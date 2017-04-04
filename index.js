@@ -4,6 +4,8 @@ const validUrl = require('valid-url');
 const app = express();
 const port = process.env.port || 3000;
 
+
+
 app.get('/*', (req, res, x) => {
   // console.log(req);
 
@@ -24,22 +26,8 @@ app.get('/*', (req, res, x) => {
       Error: 'Invalid URL'
     });
   }
-  
 });
 
-// app.get('/:url', (req, res, x) => {
-//   const url = req.params.url;
-
-//   // check if url is valid
-//   if (validUrl.isHttpUri(url)) {
-//     console.log('It is valid');
-//   } else {
-//     console.log('Invalid Url');
-//   }
-
-//   // retrieve the passed in url
-//   res.send(req.params.url);
-// });
 
 app.listen(port, function() {
   console.log('App is listening on port: ' + port);
