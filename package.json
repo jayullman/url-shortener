@@ -4,9 +4,10 @@
   "description": "URL Shortener Microservice",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack-dev-server --host 0.0.0.0",
+    "serve": "webpack-dev-server --host 0.0.0.0 --content-base ./public",
     "build": "NODE_ENV=production webpack -p",
     "buildAllStart": "npm run build && nodemon src/server",
+    "displayErrors": "webpack --display-error-details",
     "test": "mocha"
   },
   "repository": {
