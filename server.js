@@ -8,8 +8,6 @@ const getUniqueId = require('./src/getUniqueId');
 // replace mongo's deprecated promise
 mongoose.Promise = global.Promise;
 
-console.log('heroku test');
-
 // connect to MongoDB locally or mLab remotely depending on environment variable
 const mongoUrl = process.env.MONGODB_LOCAL || process.env.MONGOLAB_URI;
 
@@ -48,13 +46,22 @@ app.get('/new/*', (req, res) => {
   let url = input;
 
   // check if http is a part of the url, append if missing
-  if (url.search(/http/i) === -1) {
-    url = 'http://' + url;    
+    if (url.search(/http/i) === -1) {
+      url = 'http://' + url;
+    }
+
+  // counts the number of periods in URL.
+  let dotCount = 0;
+  for (let i = 0; i < url.length; i++) {
+    if (url[i] === '.') {
+      dotCount++;
+    }
   }
 
   // check if url is valid
   // if (validUrl.isUri(url) && url.search(/www\./i) >= 0) {
-  if (validUrl.isUri(url)) {
+  if (validUrl.isUri(url) && dotCount > 1) {
+
     // first check if url is already located in database
     urlModel.findOne({ originalUrl: url }).then((result) => {
       if (result) {
