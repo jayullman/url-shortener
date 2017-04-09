@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import App from './src/App';
 
-
 // this will add the class .can-touch to the root element allowing
 // to target touch screen devices
 // from http://www.javascriptkit.com/dhtmltutors/sticky-hover-issue-solutions.shtml

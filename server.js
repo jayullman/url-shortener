@@ -1,15 +1,26 @@
 const express = require('express');
 const validUrl = require('valid-url');
 const mongoose = require('mongoose');
-const urlModel = require('./urlModel');
-const getUniqueId = require('./getUniqueId');
+const urlModel = require('./src/urlModel');
+const getUniqueId = require('./src/getUniqueId');
 
-// connect to database
-mongoose.connect('mongodb://localhost/shortened-urls', function() {
-  console.log('Connected to database');
-});
 // replace mongo's deprecated promise
 mongoose.Promise = global.Promise;
+
+// connect to MongoDB locally or mLab remotely depending on environment variable
+const url = process.env.MONGODB_LOCAL || process.env.MONGOLAB_URI;
+
+const options = process.env.MONGOLAB_URI 
+  ? {
+      server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+      replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }
+    }
+  : {};
+
+mongoose.connect(url, options);
+
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'));  
+
 
 const app = express();
 const port = process.env.port || 3000;
@@ -27,7 +38,6 @@ app.get('/new/*', (req, res) => {
  
   // retrieve the passed in url and remove '/new/'
   let input = req.url.slice(5);
-  console.log(input);
   let url = input;
 
   // check if http is a part of the url, append if missing
@@ -41,10 +51,8 @@ app.get('/new/*', (req, res) => {
     // first check if url is already located in database
     urlModel.findOne({ originalUrl: url }).then((result) => {
       if (result) {
-        console.log('Found url in database');
         sendResultAsJSON(result);
       } else {
-        console.log('Did not find url in database');
         // create shortUrl, check against db, then save to database   
         getUniqueId().then((id) => {
           const newRecord = new urlModel({ originalUrl: url, shortUrl: id })
