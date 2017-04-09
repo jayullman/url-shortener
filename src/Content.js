@@ -10,7 +10,7 @@ export default function App() {
       </p>
         <h3>Usage:</h3>
         <code>
-          www.heroku.com/new/www.freecodecamp.com
+          https://urlshorten-fcc.herokuapp.com/new/www.freecodecamp.com
         </code>
         <p>
           The server will return a JSON object in the following format:
@@ -22,7 +22,7 @@ export default function App() {
           Using the shortened URL will redirect you to the associated URL:
       </p>
         <code>
-          www.heroku.com/hjetgtbpg
+          https://urlshorten-fcc.herokuapp.com/hjetgtbpg
         </code>
         <p>
         This project was built with Node.js, Express, MongoDB, and uses a React.js front end.
