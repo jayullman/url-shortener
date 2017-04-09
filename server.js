@@ -7,6 +7,8 @@ const getUniqueId = require('./src/getUniqueId');
 // replace mongo's deprecated promise
 mongoose.Promise = global.Promise;
 
+console.log('heroku test');
+
 // connect to MongoDB locally or mLab remotely depending on environment variable
 const url = process.env.MONGODB_LOCAL || process.env.MONGOLAB_URI;
 
