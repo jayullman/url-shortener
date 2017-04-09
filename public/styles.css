@@ -432,7 +432,6 @@ template {
 
 body {
   background-color: #e4f0f7;
-  overflow: hidden;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -446,6 +445,8 @@ body {
 
 .bodyContent {
   padding: 0 20px;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .header {
@@ -512,4 +513,11 @@ html.can-touch a:hover {
 html.can-touch .icons-container a:hover {
 		color: #e4f0f7;
 		top: 0;
+}
+
+/* for small screen */
+@media (max-width: 350px) {
+  code {
+    font-size: .6em;
+  }
 }
