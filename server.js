@@ -1,6 +1,7 @@
 const express = require('express');
 const validUrl = require('valid-url');
 const mongoose = require('mongoose');
+const path = require('path');
 const urlModel = require('./src/urlModel');
 const getUniqueId = require('./src/getUniqueId');
 
@@ -10,7 +11,7 @@ mongoose.Promise = global.Promise;
 console.log('heroku test');
 
 // connect to MongoDB locally or mLab remotely depending on environment variable
-const url = process.env.MONGODB_LOCAL || process.env.MONGOLAB_URI;
+const mongoUrl = process.env.MONGODB_LOCAL || process.env.MONGOLAB_URI;
 
 const options = process.env.MONGOLAB_URI 
   ? {
@@ -19,13 +20,13 @@ const options = process.env.MONGOLAB_URI
     }
   : {};
 
-mongoose.connect(url, options);
+mongoose.connect(mongoUrl, options);
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));  
 
 
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 

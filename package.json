@@ -2,8 +2,12 @@
   "name": "url-shortener",
   "version": "1.0.0",
   "description": "URL Shortener Microservice",
+  "engines": {
+    "node": "6.9.2"
+  },
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "serve": "webpack-dev-server --host 0.0.0.0 --content-base ./public",
     "build": "NODE_ENV=production webpack -p",
     "buildAllStart": "npm run build && nodemon src/server",
