@@ -27,6 +27,10 @@ const port = process.env.port || 3000;
 
 app.use(express.static('public'));
 
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + 'public/index.html');
+// });
+
 app.get('/new/*', (req, res) => {
 
   function sendResultAsJSON(doc) {
