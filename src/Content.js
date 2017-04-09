@@ -19,13 +19,13 @@ export default function App() {
           {"{ originalUrl: www.freecodecamp.com, shortUrl: hjetgtbpg }"}
         </code>
         <p>
-          Using the shortened URL will redirect you to the URL associated with the short URL located in the database:
+          Using the shortened URL will redirect you to the associated URL:
       </p>
         <code>
           www.heroku.com/hjetgtbpg
         </code>
         <p>
-          This project was build with Node.js, Express, MongoDB, and uses a React.js front end.
+        This project was built with Node.js, Express, MongoDB, and uses a React.js front end.
         To learn more about this project, pleasde visit the <a href="https://github.com/libeja/url-shortener" target="_blank">
         Github{'\u00A0'}project{'\u00A0'}page</a>.
       </p>
